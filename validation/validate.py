@@ -3,6 +3,7 @@ import re
 import logging
 from .validation_libraries import HEADER_CATEGORIES
 from .validate_cpp_presence import is_valid_c_code_with_no_cpp_indicator
+from .validate_illegal_libs import check_restricted_headers_and_patterns
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -143,10 +144,21 @@ def validate_code(code: str, subcategory: str) -> bool:
 
     if not has_required_libraries(code, C_RELEVANT_HEADERS):
         return False, "Please make sure you generate a valid c code for Raspberry pi with essential libraries."
+    
+    violations = check_restricted_headers_and_patterns(code)
 
-    if not subcategory_match_fuzzy(code, subcategory):
-        logger.error("Subcategory not detected in code or comments.")
-        return False, "Please make sure you generate a valid c code for Raspberry pi mentioning the subcateogry: {subcategory}'s name in the comments."
+    if violations:
+        combined_lines = [f"{header} — {reason}" for header, reason in violations]
+        full_message = (
+            "Try to generate code without the following disallowed headers or libraries..\n"
+            "Violations:\n" +
+            "\n".join(f"  - {line}" for line in combined_lines)
+        )
+        return False, full_message
+
+    # if not subcategory_match_fuzzy(code, subcategory):
+    #     logger.error("Subcategory not detected in code or comments.")
+    #     return False, "Please make sure you generate a valid c code for Raspberry pi mentioning the subcateogry: {subcategory}'s name in the comments."
 
     if not has_sufficient_comments(code):
         return False, "Please make sure you generate a valid c code for Raspberry pi with sufficient comments for the reader to understand"

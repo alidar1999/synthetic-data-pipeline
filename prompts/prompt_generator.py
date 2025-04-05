@@ -61,10 +61,12 @@ def generate_ai_prompt(category, subcategory, complexity, style, pi_model, integ
     6. Code should strictly be in C language and use libraries that support C programming.
     7. Donot use dummy libraries or non-standard libraries (such as sensor.h) etc.
     8. Donot refer to any C++ libraries in the code which cannot be used in a C program.
-    9. For Wiring access, I2C, SPI, UART, GPIO usage, refer to latest libraries such as wiringPi, pigpio, bcm2835, sysfs. DONOT Use older libraries as the code is not compatible with newer packages.
-    10. Try to use packages and libraries publicly available and the ones that you have in your knowledge, dont use complex hard to find libraries.s
+    9. Use modern and supported libraries like wiringPi, pigpio, bcm2835, or sysfs for accessing GPIO, I2C, SPI, and UART. Avoid old or deprecated libraries — they break on newer Raspberry Pi OS versions.
+    10. Use only standard Raspberry Pi and Linux-compatible C libraries that can be installed via sudo apt-get or are commonly available on Raspberry Pi OS (Bookworm/Bullseye). Avoid proprietary or obscure libraries.
+    11. Avoid deprecated libraries or functions. Ensure all APIs or commands used are compatible with modern Raspberry Pi OS (Bookworm/Bullseye).
+  
     
-    📌 Format your final output like this example (structure only, not content):
+    Format your final output like this example (structure only, not content):
 
     Write a C program for Raspberry Pi 'version' using the pigpio library to read a digital PIR motion sensor connected to GPIO17. When motion is detected, the program should log the timestamp to a file and blink an LED connected to GPIO27 for 1 second. The program should use procedural programming style, target Raspberry Pi 3 Model B+, and be suitable for a home security system in a smart home setup. It should include proper signal handling for graceful shutdown and validate sensor readings before acting.
 
