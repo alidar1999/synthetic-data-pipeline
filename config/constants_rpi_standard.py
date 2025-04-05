@@ -1,4 +1,3 @@
-# config/constants.py
 # 🌀 Code Style Variations
 CODE_STYLES = [
     "functional"
@@ -17,10 +16,15 @@ PI_MODELS = [
 ]
 
 # 🔗 Integration Types
+# INTEGRATION_PATTERNS = [
+#     "standalone", 
+#     "with multiple sensors",
+#     "in distributed system"
+# ]
+
 INTEGRATION_PATTERNS = [
     "standalone", 
-    "with multiple sensors",
-    "in distributed system"
+    "with multiple sensors"
 ]
 
 # 🌎 Real-World Application Contexts
@@ -39,6 +43,7 @@ USE_CONTEXTS = [
 
 # ✅ Phase Progression Order (Pipeline Flow)
 PROGRESSION_ORDER = [
+    "sensor_simple",
     "sensor_reading",
     "actuators",
     "sensor_actuator_combo",
@@ -66,7 +71,7 @@ CATEGORIES = {
         "servo motor", "DC motor", "stepper motor", "relay", "solenoid",
         "LED", "buzzer", "speaker", "vibration motor", "fan", "LCD display",
         "OLED screen", "RGB LED", "relay-controlled lamp", "heater", "cooling fan",
-        "valve actuator", "electromagnetic lock"
+        "valve actuator", "electromagnetic lock", "motor driver"
     ],
 
     # ⚡ Phase 2: Sensor-Actuator Integration (Expanded)
@@ -114,6 +119,13 @@ CATEGORIES = {
         "ultrasonic trigger using echo pin interrupt"
     ],
 
+    "config_management": [
+        "load sensor thresholds from JSON file",
+        "read WiFi credentials from a config.ini file",
+        "parse system limits from a configuration file",
+        "write runtime statistics to a JSON log"
+    ],
+
     # 📷 Phase 5: Camera and Image Applications (Expanded)
     # "camera_applications": [
     #     "USB camera capturing image every 10 seconds",
@@ -140,16 +152,70 @@ CATEGORIES = {
         "broadcast light levels over UDP multicast",
         "fetch thresholds for sensors from a cloud endpoint",
         "stream live sensor data over local web server"
+    ],
+    "sensor_simple": [
+        # 🌡️ Temperature Sensor Variations
+        "temperature sensor using I2C",
+        "temperature sensor using analog input",
+        "temperature sensor using SPI",
+        "temperature sensor with ADC",
+        "temperature sensor with DAC output",
+        "temperature sensor logging to file",
+        "temperature sensor triggering alert",
+
+        # 💧 Humidity Sensor Variations
+        "humidity sensor using I2C",
+        "humidity sensor using digital GPIO",
+        "humidity sensor logging values with timestamp",
+        "humidity sensor triggering a relay",
+
+        # 📈 Pressure Sensor Variations
+        "pressure sensor using I2C",
+        "pressure sensor with ADC logging",
+        "pressure sensor recording altitude values to file",
+
+        # 🔆 Light Sensor Variations
+        "light sensor using analog input",
+        "light sensor using I2C",
+        "light sensor triggering LED brightness",
+        "light sensor logging lux levels to file",
+
+        # 🧠 PIR / Motion Sensors
+        "PIR sensor with GPIO read",
+        "PIR sensor triggering LED or buzzer",
+        "PIR sensor with timestamp logging",
+
+        # 🚰 Soil Moisture Sensor
+        "soil moisture sensor using analog input",
+        "soil moisture sensor with ADC",
+        "soil moisture sensor controlling a water pump",
+
+        # 🛑 IR Sensor
+        "IR sensor reading using GPIO",
+        "IR sensor activating relay",
+        "IR sensor logging object presence",
+
+        # 🔊 Sound Sensor
+        "sound sensor using analog input",
+        "sound sensor with ADC threshold trigger",
+        "sound sensor event logging",
+
+        # 🔁 Gyroscope / Accelerometer
+        "accelerometer using I2C",
+        "gyroscope using SPI",
+        "IMU sensor logging X, Y, Z readings to CSV"
     ]
+
 }
 
 # Create weighted distribution to favor interesting categories
 PHASE_WEIGHTS = {
-    "sensor_reading": 0.25,
-    "actuators": 0.25,
+    "sensor_reading": 0.20,
+    "actuators": 0.20,
     "sensor_actuator_combo": 0.2,
     "file_logging": 0.10,
-    "interrupt_driven": 0.10,
+    "interrupt_driven": 0.05,
     #"camera_applications": 0.15,
-    "networking": 0.10
+    "networking": 0.10,
+    "sensor_simple": 0.15
 }
