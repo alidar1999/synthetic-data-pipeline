@@ -59,8 +59,10 @@ def generate_ai_prompt(category, subcategory, complexity, style, pi_model, integ
     4. Should implement {integration} approach
     5. The use context is: {context}
     6. Code should strictly be in C language and use libraries that support C programming.
-    7. Donot use dummy libraries or non-standard libraries.
+    7. Donot use dummy libraries or non-standard libraries (such as sensor.h) etc.
     8. Donot refer to any C++ libraries in the code which cannot be used in a C program.
+    9. For Wiring access, I2C, SPI, UART, GPIO usage, refer to latest libraries such as wiringPi, pigpio, bcm2835, sysfs. DONOT Use older libraries as the code is not compatible with newer packages.
+    10. Try to use packages and libraries publicly available and the ones that you have in your knowledge, dont use complex hard to find libraries.s
     
     📌 Format your final output like this example (structure only, not content):
 

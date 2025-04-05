@@ -12,6 +12,7 @@ from validation.validate import validate_code
 from api.gemini_api import call_gemini_api  
 from utils.formatting import extract_code, extract_json_block_from_response, extract_c_code_from_output
 from storage.example_saver import save_example
+from validation.validate_build_command import build_command_looks_cpp
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -88,6 +89,8 @@ def generate_example(category, subcategory, example_id):
     integration = random.choice(INTEGRATION_PATTERNS)
     context = random.choice(USE_CONTEXTS)
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    
+    fail_reason = ""  # initialized as empty string
 
     logger.info(f"🔧 Generating prompt for {category} → {subcategory}")
     base_prompt, ai_prompt = generate_ai_prompt(
@@ -155,6 +158,9 @@ def generate_example(category, subcategory, example_id):
     
     Output must be a single raw JSON object without any commentary, explanation, or markdown syntax outside the JSON.
     Ensure GPIO, sensor, or communication logic is realistic and platform-specific
+
+    IMPORTANT LAST INSTRUCTIONS:
+    {fail_reason}
     """
 
 
@@ -191,11 +197,18 @@ def generate_example(category, subcategory, example_id):
             
             code = structured_data.get("output", "")
             filtered_code = extract_c_code_from_output(code)
-            
+            build_command = structured_data.get("build-command", "")
+
+            valid, fail_reason = validate_code(filtered_code, subcategory)
+
             # Validate the code
-            if validate_code(filtered_code, subcategory):
-                # Save the example with both the AI-generated prompt and the code
-                return save_example(structured_data, metadata)
+            if valid:
+                if not build_command_looks_cpp(build_command):
+                    # Save the example with both the AI-generated prompt and the code, and other elements.
+                    return save_example(structured_data, metadata)
+                else:
+                    logger.warning(f"Generated code has incorrect build command, retrying ({attempt+1}/{MAX_RETRIES})")
+                    fail_reason = "Please generated a valid build command for the generated C code on {pi_model}"
             else:
                 logger.warning(f"Generated code failed validation, retrying ({attempt+1}/{MAX_RETRIES})")
         except Exception as e:

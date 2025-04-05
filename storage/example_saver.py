@@ -38,7 +38,7 @@ def generate_tags(category, subcategory, context, pi_model, integration):
 # ✅ Save Individual Example
 # ----------------------------
 def save_example(structured_data, metadata, save_files = False):
-    output_dir = BASE_DIR + "raspberry_pi_code_examples"
+    output_dir = BASE_DIR / "raspberry_pi_code_examples"
     try:
         # Generate a standard task title
         task_title = generate_task_title(metadata["category"], metadata["subcategory"], metadata["context"])
@@ -117,12 +117,12 @@ def save_example(structured_data, metadata, save_files = False):
                 f.write(filtered_code)
 
         # Save data after each example generation
-        with open(BASE_DIR + "pipeline_examples.json", "w", encoding="utf-8") as f:
+        with open(BASE_DIR / "pipeline_examples.json", "w", encoding="utf-8") as f:
             json.dump(all_examples, f, indent=4, ensure_ascii=False)
 
         # Save Error Logs Separately
         if error_logs:
-            with open(BASE_DIR + "pipeline_errors.json", "w", encoding="utf-8") as f:
+            with open(BASE_DIR / "pipeline_errors.json", "w", encoding="utf-8") as f:
                 json.dump(error_logs, f, indent=4, ensure_ascii=False)
         
         logger.info(f"Saved example successfully: {filename}")

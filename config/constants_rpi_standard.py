@@ -5,7 +5,8 @@ CODE_STYLES = [
 ]
 
 # 📊 Complexity Tiers
-COMPLEXITY_LEVELS = ["beginner", "intermediate", "advanced"]
+#COMPLEXITY_LEVELS = ["beginner", "intermediate", "advanced"]
+COMPLEXITY_LEVELS = ["beginner", "intermediate"]
 
 # 🍓 Raspberry Pi Model Targets
 PI_MODELS = [
@@ -27,7 +28,13 @@ USE_CONTEXTS = [
     "educational setting", "hobbyist project", "professional monitoring system",
     "research application", "industrial automation", "smart agriculture",
     "robotics project", "wearable technology", "interactive art installation",
-    "assistive technology", "environmental science", "home automation"
+    "assistive technology", "environmental science", "home automation","motion-triggered surveillance",
+    "biometric authentication system", "tamper detection system", "entry access logging",
+    "threat detection node", "sensor fusion testing", "drone navigation", "aircraft monitoring",
+    "vehicle telemetry", "biomedical instrumentation", "real-time health monitoring",
+    "remote patient diagnostics", "prosthetic device control", "automated quality control",
+    "embedded safety systems", "predictive maintenance", "smart grid management",
+    "machine learning benchmarking"
 ]
 
 # ✅ Phase Progression Order (Pipeline Flow)
@@ -37,7 +44,7 @@ PROGRESSION_ORDER = [
     "sensor_actuator_combo",
     "file_logging",
     "interrupt_driven",
-    "camera_applications",
+    #"camera_applications",
     "networking"
 ]
 
@@ -108,18 +115,18 @@ CATEGORIES = {
     ],
 
     # 📷 Phase 5: Camera and Image Applications (Expanded)
-    "camera_applications": [
-        "USB camera capturing image every 10 seconds",
-        "CSI camera capturing grayscale image and saving",
-        "detect object presence and capture image",
-        "apply blur filter to image captured via camera",
-        "stream camera feed and log frame timestamps",
-        "time-lapse photography using CSI camera",
-        "save motion-triggered snapshots from camera",
-        "capture image and resize to 320x240 before saving",
-        "capture and convert image to black and white",
-        "camera capture with filename based on timestamp"
-    ],
+    # "camera_applications": [
+    #     "USB camera capturing image every 10 seconds",
+    #     "CSI camera capturing grayscale image and saving",
+    #     "detect object presence and capture image",
+    #     "apply blur filter to image captured via camera",
+    #     "stream camera feed and log frame timestamps",
+    #     "time-lapse photography using CSI camera",
+    #     "save motion-triggered snapshots from camera",
+    #     "capture image and resize to 320x240 before saving",
+    #     "capture and convert image to black and white",
+    #     "camera capture with filename based on timestamp"
+    # ],
 
     # 📤 Phase 6: Simple Communication and Networking (Expanded)
     "networking": [
@@ -127,9 +134,9 @@ CATEGORIES = {
         "receive command over TCP to activate actuator",
         "post humidity readings to a web server using HTTP",
         "subscribe to MQTT topic to get control signals",
-        "send camera image snapshot to server via POST",
+        #"send camera image snapshot to server via POST",
         "receive configuration from HTTP API",
-        "stream video frames over MJPEG using TCP socket",
+        #"stream video frames over MJPEG using TCP socket",
         "broadcast light levels over UDP multicast",
         "fetch thresholds for sensors from a cloud endpoint",
         "stream live sensor data over local web server"
@@ -139,10 +146,10 @@ CATEGORIES = {
 # Create weighted distribution to favor interesting categories
 PHASE_WEIGHTS = {
     "sensor_reading": 0.25,
-    "actuators": 0.15,
+    "actuators": 0.25,
     "sensor_actuator_combo": 0.2,
-    "file_logging": 0.05,
+    "file_logging": 0.10,
     "interrupt_driven": 0.10,
-    "camera_applications": 0.15,
+    #"camera_applications": 0.15,
     "networking": 0.10
 }

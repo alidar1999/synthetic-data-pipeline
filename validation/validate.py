@@ -2,6 +2,7 @@
 import re
 import logging
 from .validation_libraries import HEADER_CATEGORIES
+from .validate_cpp_presence import is_valid_c_code_with_no_cpp_indicator
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -125,22 +126,29 @@ def validate_code(code: str, subcategory: str) -> bool:
         f.write(code)
     if not code or len(code) < 150:
         logger.error("Code too short.")
-        return False
+        return False, "Please make sure you generate a valid c code for Raspberry pi which is long enough to be functional."
+    
+    valid, reasons = is_valid_c_code_with_no_cpp_indicator(code)
+    if not valid:
+        logger.error("c++ elements found in code.")
+        logger.error(reasons)
+        return False, "Please make sure you generate a valid c code for Raspberry pi with no c++ elements. Avoid any c++ elements like: " + reasons
 
     if not has_main_function(code):
-        return False
+        logger.error("code has no main function.")
+        return False, " Please make sure you generate a valid c code for Raspberry pi with a main function."
 
     if not has_valid_include(code):
-        return False
+        return False, "Please make sure you generate a valid c code for Raspberry pi with #include directives."
 
     if not has_required_libraries(code, C_RELEVANT_HEADERS):
-        return False
+        return False, "Please make sure you generate a valid c code for Raspberry pi with essential libraries."
 
     if not subcategory_match_fuzzy(code, subcategory):
         logger.error("Subcategory not detected in code or comments.")
-        return False
+        return False, "Please make sure you generate a valid c code for Raspberry pi mentioning the subcateogry: {subcategory}'s name in the comments."
 
     if not has_sufficient_comments(code):
-        return False
+        return False, "Please make sure you generate a valid c code for Raspberry pi with sufficient comments for the reader to understand"
 
-    return True
+    return True, ""

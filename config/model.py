@@ -1,3 +1,5 @@
+from pathlib import Path
+
 # 🌀 Decide for RPI Mode
 RPI_PICO = False
 
@@ -16,4 +18,5 @@ API_KEYS = [
     # Add more as needed
 ]
 
-BASE_DIR = f"D:/Personal/SDU/LLM - Thesis/Progress/Week 12/Data Pipeline/Phase 2/"
+#BASE_DIR = f"D:/Personal/SDU/LLM - Thesis/Progress/Week 12/Data Pipeline/Phase 2/"
+BASE_DIR = Path(__file__).resolve().parent.parent
