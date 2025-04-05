@@ -22,6 +22,7 @@ def has_cpp_headers(code: str) -> list[str]:
         r'#include\s*<deque>',
         r'#include\s*<algorithm>',
         r'#include\s*<functional>',
+        r'#include\s*<stdexcept>',
     ]
     return [p for p in patterns if re.search(p, code)]
 

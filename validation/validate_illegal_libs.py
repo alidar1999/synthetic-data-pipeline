@@ -1,4 +1,5 @@
 import re
+from config.model import RPI_PICO
 
 # Disallowed header patterns with reasons
 RESTRICTED_HEADERS = {
@@ -29,7 +30,6 @@ RESTRICTED_HEADERS = {
     "ws2812b.h": "ws2812b.h is non-existent",
     "ws2811.h": "ws2811.h is non-existent",
     "ws2811/ws2811.h": "ws2811/ws2811.h is not allowed",
-    "pico/stdlib.h": "pico SDK headers not suitable for Pi OS",
     "dht22.h": "dht22.h is non-existent",
     "VL53L1X.h": "VL53L1X.h is non-existent",
     "systemd/sd-daemon.h": "not portable",
@@ -40,7 +40,6 @@ RESTRICTED_HEADERS = {
     "bme68x.h": "bme68x.h is non-standard",
     "paho-mqtt3c/MQTTClient.h": "use <paho-mqtt/MQTTClient.h> instead",
     "paho-mqtt3a/MQTTClient.h": "use <paho-mqtt/MQTTClient.h> instead",
-    "hardware/adc.h": "hardware/adc.h is for Pico SDK",
     "dht22Lib.h": "dht22Lib.h is non-existent",
     "dhtreader.h": "dhtreader.h is non-existent",
     "i2c.h": "i2c.h is non-existent",
@@ -48,7 +47,16 @@ RESTRICTED_HEADERS = {
     "hmc5883l_calibration.h": "custom library, not available",
     "libgpiod.h": "libgpiod.h should not be used",
     "lwip/netconn.h": "lwip/netconn.h is unavailable",
+    "opencv/cv.h": "OpenCV is C++ only, not valid in plain C",
+    "libcamera/libcamera.h": "libcamera is C++, not usable in C"
 }
+
+if not RPI_PICO:
+    RESTRICTED_HEADERS.update({
+    "pico/stdlib.h": "pico SDK headers not suitable for Pi OS",
+    "hardware/adc.h": "hardware/adc.h is for Pico SDK",
+})
+
 
 # Non-header patterns to reject (e.g., libcamera, OpenCV, pkg-config)
 RESTRICTED_PATTERNS = {
