@@ -154,7 +154,17 @@ def generate_example(category, subcategory, example_id):
     {generation_instruction_prompt}
 
     IMPORTANT Considerations
-    Ensure the C code: uses proper headers, includes error checking, is realistic for embedded applications, and is written clearly with helpful comments.
+    1. Ensure the C code: uses proper headers, includes error checking, is realistic for embedded applications, and is written clearly with helpful comments.
+    2. For logging, use either file-based (`fopen`, `fprintf`) or terminal (`printf`) output.
+    3. Code must compile independently, no placeholders or pseudocode.
+    4. Randomize the formatting of comments — use inline, block-style, or no comments at all.
+    5. Use different flow structures: `while`, `for`, `do-while`, or `if` + `sleep()` instead of polling.
+    6. Sometimes use signal handling (`signal(SIGINT, ...)`) for graceful shutdown.
+    🔥 Bonus Variations (Occasionally Introduce):
+    - Use `struct` for grouping configuration or runtime state.
+    - Create helper functions to modularize logic (setup(), read_sensor(), log_data(), etc.).
+    - Implement basic retry logic if sensor read fails.
+    - Use `gettimeofday()` or `time()` for timestamping if logging.
     
     Output must be a single raw JSON object without any commentary, explanation, or markdown syntax outside the JSON.
     Ensure GPIO, sensor, or communication logic is realistic and platform-specific

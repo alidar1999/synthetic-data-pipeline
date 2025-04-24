@@ -14,16 +14,17 @@ def generate_prompt_template(category, subcategory, pi_model):
     You are a specialized prompt engineer for Raspberry Pi pico programming. Create a detailed, creative coding prompt for a C program that uses the {subcategory} {category} on a {pi_model}.
 
     The prompt should be specific, technical, and highly detailed. Include:
-    1. The exact type of {subcategory} {category} hardware (e.g., DHT11, BMP180, PIR)
+    1. The exact type of {subcategory} {category} hardware (e.g., brand name, sensor name, sensor type)
     2. Specific C libraries for Raspberry Pi or system calls to use (e.g., wiringPi, pigpio, bcm2835, sysfs)
-    3. What the code should accomplish (e.g., read data, log to file, send over UART, control something)
-    4. Error handling for failed reads or GPIO init or I2C or SPI Communication
-    5. File format for saving results if applicable (only for an example with saving data)
-    6. Real-world use case for context (e.g., environment monitoring, safety system)
-    7. Specifically designed for {pi_model}
+    3. Clearly specify what communication protocol the sensors uses (GPIO simple, I2C, SPI, UART, 1-Wire) based on your knowlesge of the sensor
+    4. What the code should accomplish (e.g., simple read data using GPIOs, I2C, SPI communication or other ways, log to file, send over UART, control something)
+    5. Error handling for failed reads or GPIO init or I2C or SPI Communication
+    6. File format for saving results if applicable (only for an example with saving data)
+    7. Real-world use case for context (e.g., environment monitoring, safety system)
+    8. Specifically designed for {pi_model}
 
     🔹 Example Format to Follow:
-    Write a C program for Raspberry Pi 'verion' to read data from a DHT11 sensor connected to GPIO7 and write the readings to a CSV file named 'sensor_log.csv'.
+    Write a C program for Raspberry Pi 'version' to read data from a DHT11 sensor connected to GPIO7 and write the readings to a CSV file named 'sensor_log.csv'.
     
     Further requirements:
     Make your prompt interesting, technically accurate, and include an innovative approach or twist that would make this code example stand out.

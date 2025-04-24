@@ -1,0 +1,221 @@
+# 🌀 Code Style Variations
+CODE_STYLES = [
+    "functional"
+]
+
+# 📊 Complexity Tiers
+#COMPLEXITY_LEVELS = ["beginner", "intermediate", "advanced"]
+COMPLEXITY_LEVELS = ["beginner", "intermediate"]
+
+# 🍓 Raspberry Pi Model Targets
+PI_MODELS = [
+    "Raspberry Pi 4 Model B",
+    "Raspberry Pi 3 Model B+",
+    "Raspberry Pi Zero W",
+    "Raspberry Pi 5"
+]
+
+# 🔗 Integration Types
+# INTEGRATION_PATTERNS = [
+#     "standalone", 
+#     "with multiple sensors",
+#     "in distributed system"
+# ]
+
+INTEGRATION_PATTERNS = [
+    "standalone", 
+    "with multiple sensors"
+]
+
+# 🌎 Real-World Application Contexts
+USE_CONTEXTS = [
+    "educational setting", "hobbyist project", "professional monitoring system",
+    "research application", "industrial automation", "smart agriculture",
+    "robotics project", "wearable technology", "interactive art installation",
+    "assistive technology", "environmental science", "home automation","motion-triggered surveillance",
+    "biometric authentication system", "tamper detection system", "entry access logging",
+    "threat detection node", "sensor fusion testing", "drone navigation", "aircraft monitoring",
+    "vehicle telemetry", "biomedical instrumentation", "real-time health monitoring",
+    "remote patient diagnostics", "prosthetic device control", "automated quality control",
+    "embedded safety systems", "predictive maintenance", "smart grid management",
+    "machine learning benchmarking"
+]
+
+# ✅ Phase Progression Order (Pipeline Flow)
+PROGRESSION_ORDER = [
+    "sensor_simple",
+    "sensor_reading",
+    "actuators",
+    "sensor_actuator_combo",
+    "file_logging",
+    "interrupt_driven",
+    #"camera_applications",
+    "networking"
+]
+
+# 📦 Phase Categories and Subcategories
+CATEGORIES = {
+    # 🌱 Phase 1: Basic Sensor Input (Expanded)
+    "sensor_reading": [
+        "temperature sensor", "humidity sensor", "pressure sensor", "light sensor",
+        "ultrasonic sensor", "PIR sensor", "soil moisture sensor", "IR sensor",
+        "sound sensor", "vibration sensor", "gas sensor", "touch sensor",
+        "hall effect sensor", "rain sensor", "water flow sensor", "tilt sensor",
+        "flame sensor", "color sensor", "capacitive touch sensor",
+        "weight/load cell sensor", "motion sensor", "alcohol sensor",
+        "gyroscope sensor", "accelerometer", "magnetometer", "time of flight sensor"
+    ],
+
+    # ⚙️ Actuator Options (standalone)
+    "actuators": [
+        "servo motor", "DC motor", "stepper motor", "relay", "solenoid",
+        "LED", "buzzer", "speaker", "vibration motor", "fan", "LCD display",
+        "OLED screen", "RGB LED", "relay-controlled lamp", "heater", "cooling fan",
+        "valve actuator", "electromagnetic lock", "motor driver"
+    ],
+
+    # ⚡ Phase 2: Sensor-Actuator Integration (Expanded)
+    "sensor_actuator_combo": [
+        "temperature sensor controlling a cooling fan",
+        "humidity sensor triggering a dehumidifier",
+        "PIR motion sensor activating a light or buzzer",
+        "ultrasonic sensor controlling servo for parking assist",
+        "soil moisture sensor turning on a water pump",
+        "gas sensor activating a ventilation fan",
+        "IR sensor triggering a relay to open a door",
+        "sound sensor activating an alarm",
+        "light sensor adjusting brightness of an LED strip",
+        "load cell sensor triggering a locking mechanism",
+        "time of flight sensor controlling a gate",
+        "rain sensor closing a motorized window",
+        "flame sensor activating buzzer and LED",
+        "capacitive touch sensor toggling a relay"
+    ],
+
+    # 💾 Phase 3: File and Data Logging (Expanded)
+    "file_logging": [
+        "log temperature readings to a CSV file",
+        "log motion detection timestamps to a text file",
+        "log gas sensor values with timestamps",
+        "write ultrasonic distance readings to a file every second",
+        "create daily sensor log files for multiple sensors",
+        "log light and sound levels with date/time",
+        "store sensor threshold breaches to a log file",
+        "save sensor calibration values to file",
+        "record ADC readings from multiple channels into CSV",
+        "read configuration threshold values from a JSON file"
+    ],
+
+    # 🚨 Phase 4: Interrupts and Real-Time Logic (Expanded)
+    "interrupt_driven": [
+        "motion sensor using GPIO interrupt to turn on light",
+        "button interrupt to start or stop data logging",
+        "vibration sensor triggering a shutdown routine",
+        "PIR sensor GPIO interrupt activating buzzer",
+        "external interrupt from a tilt switch",
+        "IR receiver decoding input via interrupt",
+        "hardware timer interrupt for consistent sampling",
+        "Hall effect sensor rotation counting with interrupt",
+        "ultrasonic trigger using echo pin interrupt"
+    ],
+
+    "config_management": [
+        "load sensor thresholds from JSON file",
+        "read WiFi credentials from a config.ini file",
+        "parse system limits from a configuration file",
+        "write runtime statistics to a JSON log"
+    ],
+
+    # 📷 Phase 5: Camera and Image Applications (Expanded)
+    # "camera_applications": [
+    #     "USB camera capturing image every 10 seconds",
+    #     "CSI camera capturing grayscale image and saving",
+    #     "detect object presence and capture image",
+    #     "apply blur filter to image captured via camera",
+    #     "stream camera feed and log frame timestamps",
+    #     "time-lapse photography using CSI camera",
+    #     "save motion-triggered snapshots from camera",
+    #     "capture image and resize to 320x240 before saving",
+    #     "capture and convert image to black and white",
+    #     "camera capture with filename based on timestamp"
+    # ],
+
+    # 📤 Phase 6: Simple Communication and Networking (Expanded)
+    "networking": [
+        "send temperature sensor data over UDP",
+        "receive command over TCP to activate actuator",
+        "post humidity readings to a web server using HTTP",
+        "subscribe to MQTT topic to get control signals",
+        #"send camera image snapshot to server via POST",
+        "receive configuration from HTTP API",
+        #"stream video frames over MJPEG using TCP socket",
+        "broadcast light levels over UDP multicast",
+        "fetch thresholds for sensors from a cloud endpoint",
+        "stream live sensor data over local web server"
+    ],
+    "sensor_simple": [
+        # 🌡️ Temperature Sensor Variations
+        "temperature sensor using I2C",
+        "temperature sensor using analog input",
+        "temperature sensor using SPI",
+        "temperature sensor with ADC",
+        "temperature sensor with DAC output",
+        "temperature sensor logging to file",
+        "temperature sensor triggering alert",
+
+        # 💧 Humidity Sensor Variations
+        "humidity sensor using I2C",
+        "humidity sensor using digital GPIO",
+        "humidity sensor logging values with timestamp",
+        "humidity sensor triggering a relay",
+
+        # 📈 Pressure Sensor Variations
+        "pressure sensor using I2C",
+        "pressure sensor with ADC logging",
+        "pressure sensor recording altitude values to file",
+
+        # 🔆 Light Sensor Variations
+        "light sensor using analog input",
+        "light sensor using I2C",
+        "light sensor triggering LED brightness",
+        "light sensor logging lux levels to file",
+
+        # 🧠 PIR / Motion Sensors
+        "PIR sensor with GPIO read",
+        "PIR sensor triggering LED or buzzer",
+        "PIR sensor with timestamp logging",
+
+        # 🚰 Soil Moisture Sensor
+        "soil moisture sensor using analog input",
+        "soil moisture sensor with ADC",
+        "soil moisture sensor controlling a water pump",
+
+        # 🛑 IR Sensor
+        "IR sensor reading using GPIO",
+        "IR sensor activating relay",
+        "IR sensor logging object presence",
+
+        # 🔊 Sound Sensor
+        "sound sensor using analog input",
+        "sound sensor with ADC threshold trigger",
+        "sound sensor event logging",
+
+        # 🔁 Gyroscope / Accelerometer
+        "accelerometer using I2C",
+        "gyroscope using SPI",
+        "IMU sensor logging X, Y, Z readings to CSV"
+    ]
+
+}
+
+# Create weighted distribution to favor interesting categories
+PHASE_WEIGHTS = {
+    "sensor_reading": 0.20,
+    "actuators": 0.20,
+    "sensor_actuator_combo": 0.2,
+    "file_logging": 0.10,
+    "interrupt_driven": 0.05,
+    #"camera_applications": 0.15,
+    "networking": 0.10,
+    "sensor_simple": 0.15
+}
